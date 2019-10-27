@@ -3,9 +3,6 @@ html, body {
     margin:0;
     padding: 0;
 }
-body {
-    background-color: #000000;
-}
 div {
     margin: 0;
     padding: 0;
@@ -15,7 +12,11 @@ div {
     }
     #bookmarks {
         background-color: #666666;
-    }
+        color: #ffffff;
+        }
+        #bookmarks a {
+            color: #ffffff;
+        }
 
 .list-root {
     list-style-type: none;

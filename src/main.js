@@ -1,6 +1,12 @@
-const $ = require('jquery');
+import $ from 'jquery';
+import marked from 'marked';
 
-function init() {
+function initMarked() {
+    document.getElementById('content').innerHTML =
+        marked('# Marked in the browser\n\nRendered by **marked**.');
+}
+
+function initBookmarks() {
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
         const children = bookmarkTreeNodes[0].children;
         console.log('bookmarkTreeNodes>>>', bookmarkTreeNodes);
@@ -36,6 +42,7 @@ function dumpNode(bookmarkNode, stage) {
     return li;
 }
 
-module.exports = {
-    init: init,
-};
+document.addEventListener('DOMContentLoaded', function() {
+    initMarked();
+    initBookmarks();
+});

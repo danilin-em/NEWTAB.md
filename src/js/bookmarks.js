@@ -1,6 +1,6 @@
-var $ = require("jquery");
+const $ = require('jquery');
 
-function dumpBookmarks(query) {
+function dumpBookmarks() {
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
         console.log('bookmarkTreeNodes>>>', bookmarkTreeNodes);
         $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes[0].children, 'root'));
@@ -35,6 +35,6 @@ function dumpNode(bookmarkNode, stage) {
     return li;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    dumpBookmarks();
-});
+module.exports = {
+    dumpBookmarks: dumpBookmarks,
+};

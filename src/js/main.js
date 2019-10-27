@@ -1,1 +1,5 @@
-var bookmarks = require('./bookmarks.js')
+const bookmarks = require('./bookmarks.js');
+
+document.addEventListener('DOMContentLoaded', function() {
+    bookmarks.dumpBookmarks();
+});

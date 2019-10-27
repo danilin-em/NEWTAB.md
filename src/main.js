@@ -10,9 +10,11 @@ function initMarked() {
 /* Bookmarks */
 function initBookmarks() {
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
-        const children = bookmarkTreeNodes[0].children;
         console.log('bookmarkTreeNodes>>>', bookmarkTreeNodes);
-        $('#bookmarks').append(dumpTreeNodes(children, 'root'));
+        if (bookmarkTreeNodes) {
+            const children = bookmarkTreeNodes[0].children;
+            $('#bookmarks').append(dumpTreeNodes(children[0].children, 'root'));
+        }
     });
 }
 

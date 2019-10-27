@@ -26,15 +26,19 @@ function dumpTreeNodes(bookmarkNodes, stage) {
 }
 
 function dumpNode(bookmarkNode, stage) {
-    let anchor = $('<span>').text('X');
-    if (bookmarkNode.title) {
-        anchor = $('<a>');
-        anchor.attr('href', bookmarkNode.url);
-        anchor.text(bookmarkNode.title);
-        anchor.click(function() {
-            chrome.tabs.create({url: bookmarkNode.url});
-        });
+    if (!bookmarkNode.title) {
+        bookmarkNode.title = '[X]';
+        if (bookmarkNode.url) {
+            const url = new URL(bookmarkNode.url);
+            bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
+        }
     }
+    const anchor = $('<a>');
+    anchor.attr('href', bookmarkNode.url);
+    anchor.text(bookmarkNode.title);
+    anchor.click(function() {
+        chrome.tabs.create({url: bookmarkNode.url});
+    });
     const span = $('<span>');
     span.append(anchor);
     const li = $('<li class="item item-'+stage+'">').append(span);

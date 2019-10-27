@@ -1,6 +1,6 @@
 const $ = require('jquery');
 
-function dumpBookmarks() {
+function init() {
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
         const children = bookmarkTreeNodes[0].children;
         console.log('bookmarkTreeNodes>>>', bookmarkTreeNodes);
@@ -37,5 +37,5 @@ function dumpNode(bookmarkNode, stage) {
 }
 
 module.exports = {
-    dumpBookmarks: dumpBookmarks,
+    init: init,
 };

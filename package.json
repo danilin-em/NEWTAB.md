@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch --info-verbosity verbose"
   },
   "devDependencies": {
     "eslint": "6.6.*",

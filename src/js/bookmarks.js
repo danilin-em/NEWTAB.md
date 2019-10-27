@@ -2,8 +2,9 @@ const $ = require('jquery');
 
 function dumpBookmarks() {
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
+        const children = bookmarkTreeNodes[0].children;
         console.log('bookmarkTreeNodes>>>', bookmarkTreeNodes);
-        $('#bookmarks').append(dumpTreeNodes(bookmarkTreeNodes[0].children, 'root'));
+        $('#bookmarks').append(dumpTreeNodes(children, 'root'));
     });
 }
 

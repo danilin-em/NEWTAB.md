@@ -1,0 +1,33 @@
+#app {
+    height: 100%;
+    }
+    #bookmarks {
+        background-color: #666666;
+    }
+
+.list-root {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+.item-root {
+    float: left;
+}
+
+.list-children {
+    position: absolute;
+    display: none;
+    transition: 0.3s;
+}
+.list-children.opened {
+    display: block;
+}
+.item:hover>.list{
+    display:block;
+}
+.item, .list {
+    padding: 8px;
+    background-color: #333333;
+}

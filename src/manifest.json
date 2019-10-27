@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "NEWTAB.md",
+  "version": "0.1.0",
+  "description": "NEWTAB.md",
+  "permissions": [
+    "bookmarks"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "16": "assets/icon24.png",
+    "48": "assets/icon36.png",
+    "128": "assets/icon48.png"
+  }
+}

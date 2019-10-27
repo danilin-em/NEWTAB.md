@@ -1,11 +1,13 @@
 import $ from 'jquery';
 import marked from 'marked';
 
+/* Marked */
 function initMarked() {
     document.getElementById('content').innerHTML =
         marked('# Marked in the browser\n\nRendered by **marked**.');
 }
 
+/* Bookmarks */
 function initBookmarks() {
     chrome.bookmarks.getTree(function(bookmarkTreeNodes) {
         const children = bookmarkTreeNodes[0].children;
@@ -42,7 +44,18 @@ function dumpNode(bookmarkNode, stage) {
     return li;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+function init() {
     initMarked();
     initBookmarks();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    chrome.storage.sync.get(function(items) {
+        if (!chrome.runtime.error) {
+            for (const [key, value] of Object.entries(items)) {
+                localStorage.setItem(key, value);
+            }
+            init();
+        }
+    });
 });

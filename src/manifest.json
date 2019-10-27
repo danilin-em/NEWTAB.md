@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "description": "NEWTAB.md",
   "permissions": [
-    "bookmarks"
+    "bookmarks",
+    "storage"
   ],
   "chrome_url_overrides": {
     "newtab": "newtab.html"

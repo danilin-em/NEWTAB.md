@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 12.13
+install:
+  - npm install
+jobs:
+  include:
+    - stage: Lint
+      script: npm lint
+    - stage: Build
+      script: npm build

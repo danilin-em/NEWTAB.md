@@ -1,5 +1,7 @@
 # NEWTAB.md
 
+[![Build Status](https://travis-ci.com/danilin-em/NEWTAB.md.svg?branch=master)](https://travis-ci.com/danilin-em/NEWTAB.md)
+
 Use New tab page, as Markdown notepad.
 
 ## Development

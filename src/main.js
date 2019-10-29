@@ -1,10 +1,21 @@
 import $ from 'jquery';
 import marked from 'marked';
 
+const DEFAULTS = {
+    markdown: '# Marked in the browser\n\nRendered by **marked**.',
+};
+
 /* Marked */
 function initMarked() {
-    document.getElementById('content').innerHTML =
-        marked('# Marked in the browser\n\nRendered by **marked**.');
+    const markdown = document.getElementById('markdown');
+    const content = document.getElementById('content');
+    if (!markdown.value) {
+        markdown.value = DEFAULTS.markdown;
+    }
+    content.innerHTML = marked(markdown.value);
+    markdown.onkeyup = markdown.onkeypress = function() {
+        content.innerHTML = marked(this.value);
+    };
 }
 
 /* Bookmarks */
@@ -49,6 +60,7 @@ function dumpNode(bookmarkNode, stage) {
     }
     return li;
 }
+
 
 function init() {
     initMarked();

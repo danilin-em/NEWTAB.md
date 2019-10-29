@@ -3,7 +3,7 @@ import marked from 'marked';
 
 const DEFAULTS = {
     markdown: '# Marked in the browser\n\nRendered by **marked**.',
-}
+};
 
 /* Marked */
 function initMarked() {

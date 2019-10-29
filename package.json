@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "dev": "webpack-dev-server",
     "lint": "eslint ./src/main.js",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"
@@ -13,7 +14,9 @@
     "copy-webpack-plugin": "5.0.*",
     "eslint": "6.6.*",
     "eslint-config-google": "0.14.*",
+    "jshint": "^2.10.2",
     "webpack": "4.41.*",
-    "webpack-cli": "3.3.*"
+    "webpack-cli": "3.3.*",
+    "webpack-dev-server": "^3.9.0"
   }
 }

@@ -3,8 +3,11 @@ import marked from 'marked';
 
 /* Marked */
 function initMarked() {
-    document.getElementById('content').innerHTML =
-        marked('# Marked in the browser\n\nRendered by **marked**.');
+    const markdown = document.getElementById('markdown');
+    const content = document.getElementById('content');
+    markdown.onkeyup = markdown.onkeypress = function() {
+        content.innerHTML = marked(this.value);
+    };
 }
 
 /* Bookmarks */
@@ -49,6 +52,7 @@ function dumpNode(bookmarkNode, stage) {
     }
     return li;
 }
+
 
 function init() {
     initMarked();

@@ -27,4 +27,9 @@ module.exports = {
     optimization: {
         concatenateModules: true,
     },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 3000,
+    },
 };

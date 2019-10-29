@@ -1,6 +1,7 @@
 # NEWTAB.md
 
 [![Build Status](https://travis-ci.com/danilin-em/NEWTAB.md.svg?branch=master)](https://travis-ci.com/danilin-em/NEWTAB.md)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/61ca11b9447045a4952ec50c34afb0fe)](https://www.codacy.com/manual/danilin-em/NEWTAB.md?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=danilin-em/NEWTAB.md&amp;utm_campaign=Badge_Grade)
 
 Use New tab page, as Markdown notepad.
 

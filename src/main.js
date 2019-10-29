@@ -1,10 +1,18 @@
 import $ from 'jquery';
 import marked from 'marked';
 
+const DEFAULTS = {
+    markdown: '# Marked in the browser\n\nRendered by **marked**.',
+}
+
 /* Marked */
 function initMarked() {
     const markdown = document.getElementById('markdown');
     const content = document.getElementById('content');
+    if (!markdown.value) {
+        markdown.value = DEFAULTS.markdown;
+    }
+    content.innerHTML = marked(markdown.value);
     markdown.onkeyup = markdown.onkeypress = function() {
         content.innerHTML = marked(this.value);
     };

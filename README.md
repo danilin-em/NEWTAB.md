@@ -19,12 +19,29 @@ cd NEWTAB.md
 # 2. Install requirements
 npm install
 
-# 3. Watch & Build changes
-npm run watch
+```
+
+#### Way 1: Dev Server (Without instalation)
+
+```sh
+
+# Start Dev Server
+npm run dev
 
 ```
 
-### Load Extension
+See on: [http://localhost:3000/](http://localhost:3000/)
+
+> Note: *Bookmarks bar* shows **example data**
+
+#### Way 2: Load Extension
+
+```sh
+
+# Watch & Build changes
+npm run watch
+
+```
 
 1. Go to `chrome://extensions`
 2. Enable `Developer mode`

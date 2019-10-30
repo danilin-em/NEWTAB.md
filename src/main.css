@@ -20,6 +20,12 @@ div {
         #bookmarks a {
             color: #ffffff;
         }
+    #markdown {
+        background: inherit;
+        color: inherit;
+        border: none;
+        font-size: inherit;
+    }
     #screen {
         display: flex;
         flex-direction: row;

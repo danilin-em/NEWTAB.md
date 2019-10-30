@@ -47,7 +47,12 @@ div {
         bottom: 0;
         right: 0;
         left: 0;
+        display: flex;
+        font-size: 14px;
     }
+        .tools-list{
+            display: flex;
+        }
 .list-root {
     list-style-type: none;
     margin: 0;

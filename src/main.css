@@ -5,6 +5,7 @@ html, body {
     font-size: 18px;
     background: rgb(36, 36, 36);
     color: rgb(149, 149, 149);
+    font-family: Menlo, Consolas, DejaVu Sans Mono, monospace
 }
 div {
     margin: 0;

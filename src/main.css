@@ -29,6 +29,14 @@ div {
             flex-basis: 100%;
             flex: 1;
         }
+    #tools {
+        border-top: 1px solid rgb(80, 80, 80);
+        background: rgb(33, 33, 33);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
 .list-root {
     list-style-type: none;
     margin: 0;

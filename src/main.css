@@ -14,11 +14,12 @@ div {
     height: 100%;
     }
     #bookmarks {
-        background-color: #666666;
-        color: #ffffff;
+        background-color: rgb(51, 51, 51);
+        color: inherit;
+        border-bottom: 1px solid rgb(61, 61, 61)
         }
         #bookmarks a {
-            color: #ffffff;
+            color: inherit;
         }
     #markdown {
         background: inherit;

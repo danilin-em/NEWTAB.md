@@ -12,6 +12,14 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
     },
+    module: {
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader',
+            options: {},
+        }],
+    },
     plugins: [
         new CopyWebpackPlugin([
             {

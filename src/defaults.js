@@ -1,5 +1,6 @@
 
 const DEFAULTS = {
+    syncTimer: 700,
     markdown: '# Marked in the browser\n\nRendered by **marked**.',
     bookmarks: [
         // "Bookmarks bar"

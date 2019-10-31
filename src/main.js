@@ -2,6 +2,28 @@ import $ from 'jquery';
 import marked from 'marked';
 import DEFAULTS from './defaults';
 
+let syncTimer;
+
+/* Storage */
+function setStorageItem(key, value) {
+    localStorage.setItem(key, value);
+    const data = {};
+    data[key] = value;
+    clearTimeout(syncTimer);
+    if (chrome.storage) {
+        syncTimer = setTimeout(function() {
+            chrome.storage.sync.set(data);
+        }, DEFAULTS.syncTimer);
+    }
+}
+function getStorageItem(key) {
+    const value = localStorage.getItem(key);
+    return value;
+}
+
+window.setStorageItem = setStorageItem;
+window.getStorageItem = getStorageItem;
+
 /* Marked */
 function initMarked() {
     const markdown = document.getElementById('markdown');
@@ -11,6 +33,7 @@ function initMarked() {
     }
     content.innerHTML = marked(markdown.value);
     markdown.onkeyup = markdown.onkeypress = function() {
+        setStorageItem('content', this.value);
         content.innerHTML = marked(this.value);
     };
 }

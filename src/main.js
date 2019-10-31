@@ -28,6 +28,7 @@ window.getStorageItem = getStorageItem;
 function initMarked() {
     const markdown = document.getElementById('markdown');
     const content = document.getElementById('content');
+    markdown.value = getStorageItem('content');
     if (!markdown.value) {
         markdown.value = DEFAULTS.markdown;
     }

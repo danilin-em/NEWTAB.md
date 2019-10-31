@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
     devtool: 'sourcemap',
@@ -10,6 +11,14 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js'],
+    },
+    module: {
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader',
+            options: {},
+        }],
     },
     plugins: [
         new CopyWebpackPlugin([
@@ -23,6 +32,11 @@ module.exports = {
                 to: 'assets',
             },
         ]),
+        new StylelintPlugin({
+            files: [
+                './src/*.css',
+            ],
+        }),
     ],
     optimization: {
         concatenateModules: true,

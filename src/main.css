@@ -17,7 +17,6 @@ div {
     }
     #bookmarks {
         background-color: rgb(51, 51, 51);
-        color: inherit;
         border-bottom: 1px solid rgb(61, 61, 61);
         position: fixed;
         top: 0;
@@ -25,7 +24,7 @@ div {
         right: 0;
         font-size: 14px;
         padding: 4px 8px;
-        color: rgb(255,255,255);
+        color: inherit rgb(255, 255, 255);
     }
     #bookmarks a {
         color: inherit;
@@ -51,7 +50,6 @@ div {
         #screen > div {
             display: flex;
             flex-direction: column;
-            flex-basis: 100%;
             flex: 1;
         }
     #tools {
@@ -86,9 +84,9 @@ div {
 .list-children.opened {
     display: block;
 }
-.item:hover>.list{
-    display:block;
-}
 .item, .list {
     background-color: #333333;
+}
+.item:hover>.list{
+    display:block;
 }

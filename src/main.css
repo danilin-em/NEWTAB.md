@@ -2,6 +2,11 @@ html, body {
     height:100%;
     margin:0;
     padding: 0;
+    font-size: 18px;
+    background: rgb(36, 36, 36);
+    color: rgb(149, 149, 149);
+    font-family: Menlo, Consolas, DejaVu Sans Mono, monospace;
+    position: relative;
 }
 div {
     margin: 0;
@@ -11,23 +16,55 @@ div {
     height: 100%;
     }
     #bookmarks {
-        background-color: #666666;
-        color: #ffffff;
-        }
+        background-color: rgb(51, 51, 51);
+        color: inherit;
+        border-bottom: 1px solid rgb(61, 61, 61);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        font-size: 14px;
+        padding: 4px 8px;
+        color: rgb(255,255,255);
+    }
         #bookmarks a {
-            color: #ffffff;
+            color: inherit;
+        }
+    #editor {
+        border-right: 1px solid rgb(76, 76, 76)
+    }
+        #markdown {
+            background: inherit;
+            color: inherit;
+            border: none;
+            font-size: inherit;
         }
     #screen {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
+        padding-top: 25px;
+        min-height: calc(100vh - 25px)
         }
         #screen > div {
             display: flex;
             flex-direction: column;
             flex-basis: 100%;
             flex: 1;
+        }
+    #tools {
+        border-top: 1px solid rgb(80, 80, 80);
+        background: rgb(33, 33, 33);
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        font-size: 14px;
+    }
+        .tools-list{
+            display: flex;
         }
 .list-root {
     list-style-type: none;
@@ -52,6 +89,5 @@ div {
     display:block;
 }
 .item, .list {
-    padding: 8px;
     background-color: #333333;
 }

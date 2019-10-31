@@ -27,18 +27,19 @@ div {
         padding: 4px 8px;
         color: rgb(255,255,255);
     }
-        #bookmarks a {
-            color: inherit;
-        }
+    #bookmarks a {
+        color: inherit;
+    }
     #editor {
         border-right: 1px solid rgb(76, 76, 76)
     }
-        #markdown {
-            background: inherit;
-            color: inherit;
-            border: none;
-            font-size: inherit;
-        }
+    #markdown {
+        background: inherit;
+        color: inherit;
+        border: none;
+        font-size: inherit;
+        flex: 1;
+    }
     #screen {
         display: flex;
         flex-direction: row;
@@ -62,7 +63,7 @@ div {
         left: 0;
         display: flex;
         font-size: 14px;
-    }
+        }
         .tools-list{
             display: flex;
         }

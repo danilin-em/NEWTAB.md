@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
     devtool: 'sourcemap',
@@ -23,6 +24,11 @@ module.exports = {
                 to: 'assets',
             },
         ]),
+        new StylelintPlugin({
+            files: [
+                './src/*.css',
+            ],
+        }),
     ],
     optimization: {
         concatenateModules: true,

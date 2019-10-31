@@ -6,7 +6,5 @@ install:
   - npm install
 jobs:
   include:
-    - stage: Lint
-      script: npm run lint
     - stage: Build
       script: npm run build

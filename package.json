@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server",
-    "lint": "eslint ./src/main.js && stylelint ./src/main.css",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"
   },

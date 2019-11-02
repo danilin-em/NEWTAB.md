@@ -84,7 +84,20 @@ div {
 #content {
     width: 1000px;
     margin: 5px;
-    overflow-x: hidden
+    overflow-x: hidden;
+    position: relative;
+}
+
+#edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #333333;
+    color: #fff;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0px;
+    padding: 5px 10px;
 }
 
 .list-root {

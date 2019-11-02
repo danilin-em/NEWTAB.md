@@ -26,17 +26,21 @@ window.getStorageItem = getStorageItem;
 
 /* Marked */
 function initMarked() {
+    const edit = '<button id="edit">edit</button>';
     const markdown = document.getElementById('markdown');
     const content = document.getElementById('content');
     markdown.value = getStorageItem('content');
     if (!markdown.value) {
         markdown.value = DEFAULTS.markdown;
     }
-    content.innerHTML = marked(markdown.value);
+    content.innerHTML = edit + marked(markdown.value);
     markdown.onkeyup = markdown.onkeypress = function() {
         setStorageItem('content', this.value);
         content.innerHTML = marked(this.value);
     };
+    $('#edit').on('click', function() {
+        $('#editor').toggleClass('hidden');
+    });
 }
 
 /* Bookmarks */

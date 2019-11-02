@@ -8,33 +8,14 @@
 </head>
 <body>
     <div id="app">
-        <div id="bookmarks"></div>
-        <div id="screen">
-            <div id="editor">
-                <textarea id="markdown" autocomplete="off"></textarea>
-            </div>
-            <div id="content"></div>
-        </div>
-        <div id="tools">
-            <div id="buttons">
-                <button type="button">
-                    Editor
-                </button>
-                <button type="button">
-                    Toos
-                </button>
-            </div>
-            <div>
-                <div class="tools-list">
-                    <div class="tools-list-item">
-                        Simple text
-                    </div>
-                    <div class="tools-list-item">
-                        Simple text
-                    </div>
-                </div>
-            </div>
-        </div>
+        <header id="bookmarks"></header>
+        <section id="main">
+            <aside id="editor" class="hidden">
+                <textarea id="markdown" autocomplete="off" autofocus></textarea>
+            </aside>
+            <main id="content"></main>
+        </section>
+        <footer id="footer"></footer>
     </div>
 </body>
 </html>

@@ -98,11 +98,16 @@ div {
     top: 0;
     right: 0;
     background: #333333;
-    color: #fff;
+    color: rgb(235, 235, 235);
     border: 0;
     box-shadow: none;
     border-radius: 0px;
     padding: 5px 10px;
+    cursor: pointer;
+}
+#edit:focus {
+    outline-color: #fff;
+    outline-style: solid;
 }
 
 .list-root {

@@ -1,70 +1,115 @@
-html, body {
-    height:100%;
-    margin:0;
+html,
+body {
+    height: 100%;
+    margin: 0;
     padding: 0;
     font-size: 18px;
     background: rgb(36, 36, 36);
     color: rgb(149, 149, 149);
     font-family: Menlo, Consolas, DejaVu Sans Mono, monospace;
-    position: relative;
+    overflow: hidden;
 }
+
 div {
     margin: 0;
     padding: 0;
 }
+
+/* Helpers */
+.flexbox {
+    display: flex  !important;
+}
+
+.hidden {
+    display: none  !important;
+}
+
 #app {
-    height: 100%;
-    }
-    #bookmarks {
-        background-color: rgb(51, 51, 51);
-        border-bottom: 1px solid rgb(61, 61, 61);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        font-size: 14px;
-        padding: 4px 8px;
-        color: inherit rgb(255, 255, 255);
-    }
-    #bookmarks a {
-        color: inherit;
-    }
-    #editor {
-        border-right: 1px solid rgb(76, 76, 76)
-    }
-    #markdown {
-        background: inherit;
-        color: inherit;
-        border: none;
-        font-size: inherit;
-        flex: 1;
-    }
-    #screen {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-        padding-top: 25px;
-        min-height: calc(100vh - 25px)
-        }
-        #screen > div {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-    #tools {
-        border-top: 1px solid rgb(80, 80, 80);
-        background: rgb(33, 33, 33);
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        display: flex;
-        font-size: 14px;
-        }
-        .tools-list{
-            display: flex;
-        }
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#bookmarks {
+    padding: 3px;
+    font-size: 14px;
+    background-color: rgb(51, 51, 51);
+    border-bottom: 1px solid rgb(61, 61, 61);
+    color: inherit rgb(255, 255, 255);
+}
+
+#bookmarks a {
+    color: inherit;
+    padding: 2px;
+}
+
+#bookmarks ul {
+    list-style-type: none;
+}
+
+#footer {
+    height: 25px;
+    background-color: rgb(51, 51, 51);
+    border-top: 1px solid rgb(61, 61, 61);
+}
+
+#main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#editor {
+    max-width: 1000px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgb(76, 76, 76);
+    background: inherit;
+    margin: 5px;
+}
+
+#markdown {
+    flex: 1;
+    background: inherit;
+    color: inherit;
+    border: none;
+    font-size: inherit;
+    resize: none;
+    /*overflow: hidden;*/
+}
+
+#content {
+    width: 1000px;
+    margin: 5px;
+    overflow-x: hidden;
+    position: relative;
+}
+#content a,
+#content a:hover,
+#content a:visited {
+    color: rgb(235, 235, 235);
+}
+
+#edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #333333;
+    color: rgb(235, 235, 235);
+    border: 0;
+    box-shadow: none;
+    border-radius: 0px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#edit:focus {
+    outline-color: #fff;
+    outline-style: solid;
+}
+
 .list-root {
     list-style-type: none;
     margin: 0;
@@ -72,6 +117,7 @@ div {
     overflow: hidden;
     background-color: #333333;
 }
+
 .item-root {
     float: left;
 }
@@ -81,12 +127,22 @@ div {
     display: none;
     transition: 0.3s;
 }
+
 .list-children.opened {
     display: block;
 }
-.item, .list {
+
+.item,
+.list {
+    padding: 0 3px;
     background-color: #333333;
+    z-index: 10;
 }
-.item:hover>.list{
-    display:block;
+
+.item-children {
+    padding-bottom: 5px;
+}
+
+.item:hover>.list {
+    display: block;
 }

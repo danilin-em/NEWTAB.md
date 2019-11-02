@@ -26,17 +26,21 @@ window.getStorageItem = getStorageItem;
 
 /* Marked */
 function initMarked() {
+    const edit = '<button id="edit">edit</button>';
     const markdown = document.getElementById('markdown');
     const content = document.getElementById('content');
     markdown.value = getStorageItem('content');
     if (!markdown.value) {
         markdown.value = DEFAULTS.markdown;
     }
-    content.innerHTML = marked(markdown.value);
+    content.innerHTML = edit + marked(markdown.value);
     markdown.onkeyup = markdown.onkeypress = function() {
         setStorageItem('content', this.value);
         content.innerHTML = marked(this.value);
     };
+    $('#edit').on('click', function() {
+        $('#editor').toggleClass('hidden');
+    });
 }
 
 /* Bookmarks */
@@ -78,11 +82,6 @@ function dumpNode(bookmarkNode, stage) {
     const anchor = $('<a>');
     anchor.attr('href', bookmarkNode.url);
     anchor.text(bookmarkNode.title);
-    if (chrome.tabs) {
-        anchor.click(function() {
-            chrome.tabs.create({url: bookmarkNode.url});
-        });
-    }
     const span = $('<span>');
     span.append(anchor);
     const li = $('<li class="item item-'+stage+'">').append(span);

@@ -82,11 +82,6 @@ function dumpNode(bookmarkNode, stage) {
     const anchor = $('<a>');
     anchor.attr('href', bookmarkNode.url);
     anchor.text(bookmarkNode.title);
-    if (chrome.tabs) {
-        anchor.click(function() {
-            chrome.tabs.create({url: bookmarkNode.url});
-        });
-    }
     const span = $('<span>');
     span.append(anchor);
     const li = $('<li class="item item-'+stage+'">').append(span);

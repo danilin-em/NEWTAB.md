@@ -87,6 +87,11 @@ div {
     overflow-x: hidden;
     position: relative;
 }
+#content a,
+#content a:hover,
+#content a:visited {
+    color: rgb(235, 235, 235);
+}
 
 #edit {
     position: absolute;

@@ -74,17 +74,16 @@ function dumpTreeNodes(bookmarkNodes, stage) {
 function dumpNode(bookmarkNode, stage) {
     if (!bookmarkNode.title) {
         bookmarkNode.title = '[X]';
-        if (bookmarkNode.url) {
-            const url = new URL(bookmarkNode.url);
-            bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
-        }
+        const url = new URL(bookmarkNode.url);
+        bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
     }
-    const anchor = $('<a>');
-    anchor.attr('href', bookmarkNode.url);
-    anchor.text(bookmarkNode.title);
-    const span = $('<span>');
-    span.append(anchor);
-    const li = $('<li class="item item-'+stage+'">').append(span);
+    let item = $('<span>').html(bookmarkNode.title);
+    if (bookmarkNode.url) {
+        item = $('<a>');
+        item.attr('href', bookmarkNode.url);
+        item.text(bookmarkNode.title);
+    }
+    const li = $('<li class="item item-'+stage+'">').append(item);
     if (bookmarkNode.children && bookmarkNode.children.length > 0) {
         li.append(dumpTreeNodes(bookmarkNode.children, 'children'));
     }

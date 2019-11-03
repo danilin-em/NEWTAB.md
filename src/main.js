@@ -2,9 +2,8 @@ import $ from 'jquery';
 import marked from 'marked';
 import DEFAULTS from './defaults';
 
-let syncTimer;
-
 /* Storage */
+let syncTimer;
 function setStorageItem(key, value) {
     localStorage.setItem(key, value);
     const data = {};
@@ -20,9 +19,6 @@ function getStorageItem(key) {
     const value = localStorage.getItem(key);
     return value;
 }
-
-window.setStorageItem = setStorageItem;
-window.getStorageItem = getStorageItem;
 
 /* Marked */
 function initMarked() {

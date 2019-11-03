@@ -10,9 +10,11 @@ function initKeyboardShortcuts() {
          */
         const key = e.which || e.keyCode;
         if (e.ctrlKey && key == 83) {
-            const markdown = document.getElementById('markdown');
-            setStorageItem('content', markdown.value);
-            $('#editor').addClass('hidden');
+            if (!$('#editor').hasClass('hidden')) {
+                const markdown = document.getElementById('markdown');
+                setStorageItem('content', markdown.value);
+                $('#editor').addClass('hidden');
+            }
             e.preventDefault();
         } else if (e.ctrlKey && key == 88) {
             $('#editor').toggleClass('hidden');

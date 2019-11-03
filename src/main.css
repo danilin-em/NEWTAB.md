@@ -139,6 +139,10 @@ div {
     z-index: 10;
 }
 
+.item>span {
+    cursor: default;
+}
+
 .item-children {
     padding-bottom: 5px;
 }

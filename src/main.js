@@ -2,6 +2,25 @@ import $ from 'jquery';
 import marked from 'marked';
 import DEFAULTS from './defaults';
 
+function initKeyboardShortcuts() {
+    document.addEventListener('keydown', function(e) {
+        /**
+         * 83 - s
+         * 88 - x
+         */
+        const key = e.which || e.keyCode;
+        if (e.ctrlKey && key == 83) {
+            const markdown = document.getElementById('markdown');
+            setStorageItem('content', markdown.value);
+            $('#editor').addClass('hidden');
+            e.preventDefault();
+        } else if (e.ctrlKey && key == 88) {
+            $('#editor').toggleClass('hidden');
+            e.preventDefault();
+        }
+    });
+}
+
 /* Storage */
 let syncTimer;
 function setStorageItem(key, value) {
@@ -89,6 +108,7 @@ function dumpNode(bookmarkNode, stage) {
 function init() {
     initMarked();
     initBookmarks();
+    initKeyboardShortcuts();
 }
 
 document.addEventListener('DOMContentLoaded', function() {

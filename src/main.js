@@ -40,18 +40,21 @@ function getStorageItem(key) {
 }
 
 /* Marked */
-function initMarked() {
+function renderMarked(value) {
     const edit = '<button id="edit">edit</button>';
+    return edit + marked(value);
+}
+function initMarked() {
     const markdown = document.getElementById('markdown');
     const content = document.getElementById('content');
     markdown.value = getStorageItem('content');
     if (!markdown.value) {
         markdown.value = DEFAULTS.markdown;
     }
-    content.innerHTML = edit + marked(markdown.value);
+    content.innerHTML = renderMarked(markdown.value);
     markdown.onkeyup = markdown.onkeypress = function() {
         setStorageItem('content', this.value);
-        content.innerHTML = marked(this.value);
+        content.innerHTML = renderMarked(this.value);
     };
     $('#edit').on('click', function() {
         $('#editor').toggleClass('hidden');

@@ -94,14 +94,27 @@ function dumpTreeNodes(bookmarkNodes, stage) {
 function dumpNode(bookmarkNode, stage) {
     if (!bookmarkNode.title) {
         bookmarkNode.title = '[X]';
-        const url = new URL(bookmarkNode.url);
-        bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
+        if (bookmarkNode.url) {
+            const url = new URL(bookmarkNode.url);
+            bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
+        }
     }
     let item = $('<span>').html(bookmarkNode.title);
     if (bookmarkNode.url) {
         item = $('<a>');
         item.attr('href', bookmarkNode.url);
         item.text(bookmarkNode.title);
+        const url = new URL(bookmarkNode.url);
+        if (['chrome:', 'chrome-extension:'].includes(url.protocol)) {
+            if (chrome.tabs) {
+                item.click(function(e) {
+                    chrome.tabs.create({
+                        url: bookmarkNode.url,
+                    });
+                    e.preventDefault();
+                });
+            }
+        }
     }
     const li = $('<li class="item item-'+stage+'">').append(item);
     if (bookmarkNode.children && bookmarkNode.children.length > 0) {

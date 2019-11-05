@@ -58,7 +58,7 @@ function initMarked() {
         setStorageItem('content', this.value);
         content.innerHTML = renderMarked(this.value);
     };
-    $('#edit').on('click', function() {
+    $(document).on('click', '#edit', function() {
         $('#editor').toggleClass('hidden');
     });
 }

@@ -25,11 +25,13 @@ div {
 }
 
 #app {
-    min-height: 100vh;
-    max-height: 100vh;
+    min-height: calc(100vh - 31px);
+    max-height: calc(100vh - 31px);
     overflow: auto;
     display: flex;
     flex-direction: column;
+    padding-top: 31px;
+    position: relative;
 }
 
 /* REST BAR STYLES */
@@ -39,6 +41,10 @@ div {
     background-color: rgb(51, 51, 51);
     border-bottom: 1px solid rgb(61, 61, 61);
     color: inherit rgb(255, 255, 255);
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    top: 0;
 }
 #bookmarks ul {
     list-style-type: none;

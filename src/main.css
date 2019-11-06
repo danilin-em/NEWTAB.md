@@ -65,7 +65,7 @@ div {
 #bookmarks > ul > li span {
     display: block;
     color: inherit;
-    padding: 4px;
+    padding: 4px 4px 4px 2em;
 }
 
 /* ALL CHILDREN LIST */
@@ -85,9 +85,36 @@ div {
     margin-left: -4px;
     margin-right: -4px;
 }
-#bookmarks > ul > li ul a,
-#bookmarks > ul > li ul span {
-    padding-left: 32px;
+
+/* ICON ITEMS STYLING */
+#bookmarks a::before,
+#bookmarks span::before,
+#bookmarks span::after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 1em;
+    width: 1em;
+    background-size: 1em;
+    top: 50%;
+    margin-top: -.5em;
+}
+#bookmarks a::before,
+#bookmarks span::before {
+    left: .5em;
+}
+#bookmarks a::before {
+    background-image: url('./assets/icon-site.svg');
+}
+#bookmarks span::before {
+    background-image: url('./assets/icon-folder.svg');
+}
+#bookmarks span::before {
+    background-image: url('./assets/icon-folder.svg');
+}
+#bookmarks > ul > li ul span::after {
+    right: 0;
+    background-image: url('./assets/icon-arrow.svg');
 }
 
 /* STYLING SECOND AND THIRD LEVELS LIST */
@@ -100,8 +127,8 @@ div {
     left: calc(100% + 1px);
 }
 
-#bookmarks span:hover,
-#bookmarks a:hover {
+#bookmarks li:hover > span,
+#bookmarks li:hover > a {
     background: rgba(235, 235, 235, 0.2);
 }
 

@@ -74,7 +74,7 @@ function initMarked() {
             navigator.clipboard.writeText(text);
         }
     });
-    $('#edit').on('click', function() {
+    $(document).on('click', '#edit', function() {
         $('#editor').toggleClass('hidden');
     });
 }

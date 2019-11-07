@@ -5,6 +5,8 @@
 
 Use New tab page, as Markdown notepad.
 
+![](./doc/preview.gif)
+
 ## Development
 
 ### Prepare

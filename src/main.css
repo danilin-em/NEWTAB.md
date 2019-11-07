@@ -24,6 +24,20 @@ div {
     display: none  !important;
 }
 
+.spoiler {
+    margin: 5px;
+    padding: 5px;
+    background: #333333;
+    color: #333333;
+}
+.spoiler:hover {
+    color: #fff;
+}
+
+.copy {
+    cursor: pointer;
+}
+
 #app {
     min-height: 100vh;
     max-height: 100vh;

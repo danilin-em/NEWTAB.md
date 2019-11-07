@@ -1,6 +1,6 @@
 # CONTRIBUTING
 
-### Prepare
+## Prepare
 
 ```sh
 
@@ -15,7 +15,7 @@ npm install
 
 ```
 
-#### Way 1: Dev Server (Without instalation)
+### Way 1: Dev Server (Without instalation)
 
 ```sh
 
@@ -28,7 +28,7 @@ See on: [http://localhost:3000/](http://localhost:3000/)
 
 > Note: *Bookmarks bar* shows **example data**
 
-#### Way 2: Load Extension
+### Way 2: Load Extension
 
 ```sh
 

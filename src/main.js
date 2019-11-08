@@ -79,13 +79,9 @@ function initBookmarks() {
 }
 
 /* Footer */
-function initFooter() {
-    const footer = document.getElementById('footer');
-    const edit = document.createElement('button');
+function initEditor() {
+    const edit = document.getElementById('edit');
 
-    edit.innerHTML = 'Edit <span>Ctrl+X</span>';
-    edit.id = 'edit';
-    footer.prepend(edit);
     edit.addEventListener('click', () => {
         $('#editor').toggleClass('hidden');
     });
@@ -136,7 +132,7 @@ function init() {
     initMarked();
     initBookmarks();
     initKeyboardShortcuts();
-    initFooter();
+    initEditor();
 }
 
 document.addEventListener('DOMContentLoaded', function() {

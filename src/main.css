@@ -34,12 +34,13 @@ a:hover {
 }
 
 #app {
-    min-height: calc(100vh - 31px);
-    max-height: calc(100vh - 31px);
+    min-height: calc(100vh - 31px - 25px);
+    max-height: calc(100vh - 31px - 25px);
+    margin-top: 31px;
+    margin-bottom: 25px;
     overflow: auto;
     display: flex;
     flex-direction: column;
-    padding-top: 31px;
     position: relative;
 }
 
@@ -158,6 +159,10 @@ a:hover {
 }
 
 #footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -179,7 +184,6 @@ a:hover {
     flex-direction: column;
     border-right: 1px solid rgb(76, 76, 76);
     background: inherit;
-    margin: 5px;
 }
 
 #markdown {
@@ -189,7 +193,13 @@ a:hover {
     border: none;
     font-size: inherit;
     resize: none;
+    padding: 10px 12px;
     /*overflow: hidden;*/
+}
+
+#markdown:focus {
+    outline: none;
+    box-shadow: inset #00BCD4 0 0 0 1px;
 }
 
 #edit {

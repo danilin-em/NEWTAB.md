@@ -43,8 +43,7 @@ function getStorageItem(key) {
 
 /* Marked */
 function renderMarked(value) {
-    const edit = '<button id="edit">edit</button>';
-    return edit + marked(value);
+    return marked(value);
 }
 function initMarked() {
     marked.setOptions({
@@ -74,9 +73,6 @@ function initMarked() {
             navigator.clipboard.writeText(text);
         }
     });
-    $(document).on('click', '#edit', function() {
-        $('#editor').toggleClass('hidden');
-    });
 }
 
 /* Bookmarks */
@@ -95,6 +91,15 @@ function initBookmarks() {
             const children = bookmarkTreeNodes[0].children;
             $('#bookmarks').append(dumpTreeNodes(children[0].children, 'root'));
         }
+    });
+}
+
+/* Footer */
+function initEditor() {
+    const edit = document.getElementById('edit');
+
+    edit.addEventListener('click', () => {
+        $('#editor').toggleClass('hidden');
     });
 }
 
@@ -143,6 +148,7 @@ function init() {
     initMarked();
     initBookmarks();
     initKeyboardShortcuts();
+    initEditor();
 }
 
 document.addEventListener('DOMContentLoaded', function() {

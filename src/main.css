@@ -15,6 +15,15 @@ div {
     padding: 0;
 }
 
+a,
+a:visited {
+    color: rgb(200, 200, 200);
+}
+
+a:hover {
+    color: rgb(235, 235, 235);
+}
+
 /* Helpers */
 .flexbox {
     display: flex  !important;
@@ -39,40 +48,141 @@ div {
 }
 
 #app {
-    min-height: 100vh;
-    max-height: 100vh;
+    min-height: calc(100vh - 32px - 26px);
+    max-height: calc(100vh - 32px - 26px);
+    margin-top: 32px;
+    margin-bottom: 26px;
     overflow: auto;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
+#content {
+    width: 1000px;
+    margin: 5px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+
+/* REST BAR STYLES */
 #bookmarks {
     padding: 3px;
     font-size: 14px;
     background-color: rgb(51, 51, 51);
     border-bottom: 1px solid rgb(61, 61, 61);
     color: inherit rgb(255, 255, 255);
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    top: 0;
 }
-
-#bookmarks a {
-    color: inherit;
-    padding: 2px;
-}
-
 #bookmarks ul {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#bookmarks a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+#bookmarks span {
+    cursor: default;
+}
+
+/* BOOKMARKS BAR ITEMS STYLING */
+#bookmarks > ul > li {
+    margin-left: 2px;
+    margin-right: 2px;
+    display: inline-block;
+    position: relative;
+}
+#bookmarks > ul > li a,
+#bookmarks > ul > li span {
+    display: block;
+    color: inherit;
+    padding: 4px 4px 4px 2em;
+}
+
+/* ALL CHILDREN LIST */
+#bookmarks > ul > li ul {
+    position: absolute;
+    display: none;
+    background: rgb(36, 36, 36);
+    padding: 4px;
+    box-shadow: rgb(61, 61, 61) 0 0 0 1px ;
+    min-width: 150px;
+    z-index: 10;
+}
+#bookmarks > ul > li > ul {
+    top: 100%;
+}
+#bookmarks > ul > li ul li {
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+/* ICON ITEMS STYLING */
+#bookmarks a::before,
+#bookmarks span::before,
+#bookmarks span::after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 1em;
+    width: 1em;
+    background-size: 1em;
+    top: 50%;
+    margin-top: -.5em;
+}
+#bookmarks a::before,
+#bookmarks span::before {
+    left: .5em;
+}
+#bookmarks a::before {
+    background-image: url('./assets/icon-site.svg');
+}
+#bookmarks span::before {
+    background-image: url('./assets/icon-folder.svg');
+}
+#bookmarks > ul > li ul span::after {
+    right: 0;
+    background-image: url('./assets/icon-arrow.svg');
+}
+
+/* STYLING SECOND AND THIRD LEVELS LIST */
+#bookmarks > ul > li > ul a,
+#bookmarks > ul > li > ul span {
+    position: relative;
+}
+#bookmarks > ul > li > ul ul {
+    top: 0;
+    left: calc(100% + 1px);
+}
+
+#bookmarks li:hover > span,
+#bookmarks li:hover > a {
+    background: rgba(235, 235, 235, 0.2);
+}
+
+/* ALL CHILDREN LIST ITEM */
+#bookmarks > ul li:hover > ul {
+    display: block;
 }
 
 #footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 25px;
     background-color: rgb(51, 51, 51);
     border-top: 1px solid rgb(61, 61, 61);
-}
-#footer a {
-    color: rgb(200, 200, 200);
 }
 
 #main {
@@ -88,7 +198,6 @@ div {
     flex-direction: column;
     border-right: 1px solid rgb(76, 76, 76);
     background: inherit;
-    margin: 5px;
 }
 
 #markdown {
@@ -98,26 +207,21 @@ div {
     border: none;
     font-size: inherit;
     resize: none;
+    padding: 10px 12px;
     /*overflow: hidden;*/
 }
 
-#content {
-    width: 1000px;
-    margin: 5px;
-    overflow-x: hidden;
-    position: relative;
-}
-#content a,
-#content a:hover,
-#content a:visited {
-    color: rgb(235, 235, 235);
+#markdown:focus {
+    outline: none;
+    box-shadow: inset #00BCD4 0 0 0 1px;
 }
 
 #edit {
     position: absolute;
+    display: block;
     top: 0;
-    right: 0;
-    background: #333333;
+    left: 0;
+    background: transparent;
     color: rgb(235, 235, 235);
     border: 0;
     box-shadow: none;
@@ -125,48 +229,13 @@ div {
     padding: 5px 10px;
     cursor: pointer;
 }
-#edit:focus {
-    outline-color: #fff;
-    outline-style: solid;
+#footer #edit > span {
+  color: rgba(235, 235, 235, 0.5);
 }
-
-.list-root {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333333;
+#footer #edit:focus {
+  background: rgba(235, 235, 235, 0.1);
+  outline: none;
 }
-
-.item-root {
-    float: left;
-}
-
-.list-children {
-    position: absolute;
-    display: none;
-    transition: 0.3s;
-}
-
-.list-children.opened {
-    display: block;
-}
-
-.item,
-.list {
-    padding: 0 3px;
-    background-color: #333333;
-    z-index: 10;
-}
-
-.item>span {
-    cursor: default;
-}
-
-.item-children {
-    padding-bottom: 5px;
-}
-
-.item:hover>.list {
-    display: block;
+#footer #edit:hover {
+  background: rgba(235, 235, 235, 0.2);
 }

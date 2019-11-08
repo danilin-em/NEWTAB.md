@@ -34,10 +34,10 @@ a:hover {
 }
 
 #app {
-    min-height: calc(100vh - 31px - 25px);
-    max-height: calc(100vh - 31px - 25px);
-    margin-top: 31px;
-    margin-bottom: 25px;
+    min-height: calc(100vh - 32px - 26px);
+    max-height: calc(100vh - 32px - 26px);
+    margin-top: 32px;
+    margin-bottom: 26px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -204,9 +204,10 @@ a:hover {
 
 #edit {
     position: absolute;
+    display: block;
     top: 0;
-    right: 0;
-    background: #333333;
+    left: 0;
+    background: transparent;
     color: rgb(235, 235, 235);
     border: 0;
     box-shadow: none;
@@ -214,7 +215,13 @@ a:hover {
     padding: 5px 10px;
     cursor: pointer;
 }
-#edit:focus {
-    outline-color: #fff;
-    outline-style: solid;
+#footer #edit > span {
+  color: rgba(235, 235, 235, 0.5);
+}
+#footer #edit:focus {
+  background: rgba(235, 235, 235, 0.1);
+  outline: none;
+}
+#footer #edit:hover {
+  background: rgba(235, 235, 235, 0.2);
 }

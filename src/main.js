@@ -43,8 +43,7 @@ function getStorageItem(key) {
 
 /* Marked */
 function renderMarked(value) {
-    const edit = '<button id="edit">edit</button>';
-    return edit + marked(value);
+    return marked(value);
 }
 function initMarked() {
     const markdown = document.getElementById('markdown');
@@ -58,9 +57,6 @@ function initMarked() {
         setStorageItem('content', this.value);
         content.innerHTML = renderMarked(this.value);
     };
-    $('#edit').on('click', function() {
-        $('#editor').toggleClass('hidden');
-    });
 }
 
 /* Bookmarks */
@@ -79,6 +75,19 @@ function initBookmarks() {
             const children = bookmarkTreeNodes[0].children;
             $('#bookmarks').append(dumpTreeNodes(children[0].children, 'root'));
         }
+    });
+}
+
+/* Footer */
+function initFooter() {
+    const footer = document.getElementById('footer');
+    const edit = document.createElement('button');
+
+    edit.innerHTML = 'Edit <span>Ctrl+X</span>';
+    edit.id = 'edit';
+    footer.prepend(edit);
+    edit.addEventListener('click', () => {
+        $('#editor').toggleClass('hidden');
     });
 }
 
@@ -127,6 +136,7 @@ function init() {
     initMarked();
     initBookmarks();
     initKeyboardShortcuts();
+    initFooter();
 }
 
 document.addEventListener('DOMContentLoaded', function() {

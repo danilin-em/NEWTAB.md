@@ -5,6 +5,35 @@
 
 Use New tab page, as Markdown notepad.
 
+![](./doc/preview.gif)
+
+## Extensions
+
+### Spoiler
+
+```markdown
+
+    ```spoiler
+
+    My Hidden Text
+
+    ```
+
+```
+
+### Copy to clipboard
+
+```markdown
+
+    ```copy
+
+    Click on me to copy this text!
+
+    ```
+
+```
+
+
 ## Development
 
 ### Prepare

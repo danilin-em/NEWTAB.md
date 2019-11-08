@@ -15,6 +15,15 @@ div {
     padding: 0;
 }
 
+a,
+a:visited {
+    color: rgb(200, 200, 200);
+}
+
+a:hover {
+    color: rgb(235, 235, 235);
+}
+
 /* Helpers */
 .flexbox {
     display: flex  !important;
@@ -33,6 +42,14 @@ div {
     padding-top: 31px;
     position: relative;
 }
+
+#content {
+    width: 1000px;
+    margin: 5px;
+    overflow-x: hidden;
+    position: relative;
+}
+
 
 /* REST BAR STYLES */
 #bookmarks {
@@ -115,9 +132,6 @@ div {
 #bookmarks span::before {
     background-image: url('./assets/icon-folder.svg');
 }
-#bookmarks span::before {
-    background-image: url('./assets/icon-folder.svg');
-}
 #bookmarks > ul > li ul span::after {
     right: 0;
     background-image: url('./assets/icon-arrow.svg');
@@ -151,9 +165,6 @@ div {
     background-color: rgb(51, 51, 51);
     border-top: 1px solid rgb(61, 61, 61);
 }
-#footer a {
-    color: rgb(200, 200, 200);
-}
 
 #main {
     flex: 1;
@@ -179,18 +190,6 @@ div {
     font-size: inherit;
     resize: none;
     /*overflow: hidden;*/
-}
-
-#content {
-    width: 1000px;
-    margin: 5px;
-    overflow-x: hidden;
-    position: relative;
-}
-#content a,
-#content a:hover,
-#content a:visited {
-    color: rgb(235, 235, 235);
 }
 
 #edit {

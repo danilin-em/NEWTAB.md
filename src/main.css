@@ -33,6 +33,20 @@ a:hover {
     display: none  !important;
 }
 
+.spoiler {
+    margin: 5px;
+    padding: 5px;
+    background: #333333;
+    color: #333333;
+}
+.spoiler:hover {
+    color: #fff;
+}
+
+.copy {
+    cursor: pointer;
+}
+
 #app {
     min-height: calc(100vh - 32px - 26px);
     max-height: calc(100vh - 32px - 26px);

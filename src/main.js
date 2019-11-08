@@ -46,6 +46,16 @@ function renderMarked(value) {
     return marked(value);
 }
 function initMarked() {
+    marked.setOptions({
+        highlight: function(code, lang) {
+            if (lang === 'spoiler') {
+                return '<div class="spoiler">' + code + '</div>';
+            }
+            if (lang === 'copy') {
+                return '<div class="copy">' + code + '</div>';
+            }
+        },
+    });
     const markdown = document.getElementById('markdown');
     const content = document.getElementById('content');
     markdown.value = getStorageItem('content');
@@ -57,6 +67,12 @@ function initMarked() {
         setStorageItem('content', this.value);
         content.innerHTML = renderMarked(this.value);
     };
+    $(document).on('click', '.copy', function(e) {
+        if (navigator.clipboard) {
+            const text = $(e.target).html();
+            navigator.clipboard.writeText(text);
+        }
+    });
 }
 
 /* Bookmarks */

@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "update": "git fetch && npm ci",
     "dev": "webpack-dev-server",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"

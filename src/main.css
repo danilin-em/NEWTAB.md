@@ -149,6 +149,7 @@ a:hover {
     box-shadow: rgb(61, 61, 61) 0 0 0 1px ;
     min-width: 150px;
     z-index: 10;
+    max-height: 87vh;
 }
 #bookmarks > ul > li > ul {
     top: 100%;
@@ -156,6 +157,7 @@ a:hover {
 #bookmarks > ul > li ul li {
     margin-left: -4px;
     margin-right: -4px;
+    width: 250px;
 }
 
 /* ICON ITEMS STYLING */

@@ -1,6 +1,15 @@
 import marked from 'marked';
 import DEFAULTS from './defaults';
 
+/* Helpers */
+function truncate(input, length) {
+    if (input.length > length) {
+        return input.substring(0, length) + '...';
+    } else {
+        return input;
+    }
+}
+
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
         /**
@@ -116,7 +125,7 @@ function initEditor() {
 function dumpTreeNodes(bookmarkNodes, stage) {
     const list = document.createElement('ul');
     list.classList.add('list');
-    list.classList.add('list'+stage);
+    list.classList.add('list-'+stage);
     let i;
     for (i = 0; i < bookmarkNodes.length; i++) {
         list.appendChild(dumpNode(bookmarkNodes[i], stage));
@@ -132,13 +141,13 @@ function dumpNode(bookmarkNode, stage) {
             bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
         }
     }
-    const bookmarkNodeTitle = document.createTextNode(bookmarkNode.title);
+    const title = document.createTextNode(truncate(bookmarkNode.title, 20));
     let item = document.createElement('span');
-    item.appendChild(bookmarkNodeTitle);
+    item.appendChild(title);
     if (bookmarkNode.url) {
         item = document.createElement('a');
         item.setAttribute('href', bookmarkNode.url);
-        item.appendChild(bookmarkNodeTitle);
+        item.appendChild(title);
         const url = new URL(bookmarkNode.url);
         if (['chrome:', 'chrome-extension:'].includes(url.protocol)) {
             if (chrome.tabs) {
@@ -151,6 +160,7 @@ function dumpNode(bookmarkNode, stage) {
             }
         }
     }
+    item.setAttribute('title', bookmarkNode.title);
     const li = document.createElement('li');
     li.classList.add('item');
     li.classList.add('item-' + stage);

@@ -54,10 +54,10 @@ function getStorageItem(key) {
 function initMarked() {
     marked.setOptions({
         highlight: function(code, lang) {
-            if (lang === 'spoiler') {
+            if (['spoiler', '?'].includes(lang)) {
                 return '<div class="spoiler">' + code + '</div>';
             }
-            if (lang === 'copy') {
+            if (['copy', '!'].includes(lang)) {
                 return '<div class="copy">' + code + '</div>';
             }
         },

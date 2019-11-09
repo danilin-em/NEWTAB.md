@@ -13,11 +13,11 @@ function initKeyboardShortcuts() {
             if (!$('#editor').hasClass('hidden')) {
                 const markdown = document.getElementById('markdown');
                 setStorageItem('content', markdown.value);
-                $('#editor').addClass('hidden');
+                switchEditorMode();
             }
             e.preventDefault();
         } else if (e.ctrlKey && key == 88) {
-            $('#editor').toggleClass('hidden');
+            switchEditorMode();
             e.preventDefault();
         }
     });
@@ -94,12 +94,23 @@ function initBookmarks() {
     });
 }
 
-/* Footer */
+/* Editor */
+function switchEditorMode() {
+    const editBtn = document.getElementById('edit');
+    const editorPanel = document.getElementById('editor');
+    const markdownTextArea = document.getElementById('markdown');
+    editorPanel.classList.toggle('hidden');
+    if (editorPanel.classList.contains('hidden')) {
+        editBtn.innerHTML = 'Edit <span>Ctrl+X</span>';
+    } else {
+        markdownTextArea.focus();
+        editBtn.innerHTML = 'Save <span>Ctrl+S</span>';
+    }
+}
 function initEditor() {
     const edit = document.getElementById('edit');
-
     edit.addEventListener('click', () => {
-        $('#editor').toggleClass('hidden');
+        switchEditorMode();
     });
 }
 

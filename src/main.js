@@ -1,6 +1,14 @@
-import $ from 'jquery';
 import marked from 'marked';
 import DEFAULTS from './defaults';
+
+/* Helpers */
+function truncate(input, length) {
+    if (input.length > length) {
+        return input.substring(0, length) + '...';
+    } else {
+        return input;
+    }
+}
 
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
@@ -8,16 +16,17 @@ function initKeyboardShortcuts() {
          * 83 - s
          * 88 - x
          */
+        const editorPanel = document.getElementById('editor');
         const key = e.which || e.keyCode;
         if (e.ctrlKey && key == 83) {
-            if (!$('#editor').hasClass('hidden')) {
+            if (!editorPanel.classList.contains('hidden')) {
                 const markdown = document.getElementById('markdown');
                 setStorageItem('content', markdown.value);
-                $('#editor').addClass('hidden');
+                switchEditorMode();
             }
             e.preventDefault();
         } else if (e.ctrlKey && key == 88) {
-            $('#editor').toggleClass('hidden');
+            switchEditorMode();
             e.preventDefault();
         }
     });
@@ -42,16 +51,13 @@ function getStorageItem(key) {
 }
 
 /* Marked */
-function renderMarked(value) {
-    return marked(value);
-}
 function initMarked() {
     marked.setOptions({
         highlight: function(code, lang) {
-            if (lang === 'spoiler') {
+            if (['spoiler', '?'].includes(lang)) {
                 return '<div class="spoiler">' + code + '</div>';
             }
-            if (lang === 'copy') {
+            if (['copy', '!'].includes(lang)) {
                 return '<div class="copy">' + code + '</div>';
             }
         },
@@ -62,17 +68,19 @@ function initMarked() {
     if (!markdown.value) {
         markdown.value = DEFAULTS.markdown;
     }
-    content.innerHTML = renderMarked(markdown.value);
+    content.innerHTML = marked(markdown.value);
     markdown.onkeyup = markdown.onkeypress = function() {
         setStorageItem('content', this.value);
-        content.innerHTML = renderMarked(this.value);
+        content.innerHTML = marked(this.value);
     };
-    $(document).on('click', '.copy', function(e) {
+    document.addEventListener('click', function(e) {
+        if (!e.target.matches('.copy')) return;
         if (navigator.clipboard) {
-            const text = $(e.target).html();
+            const text = e.target.innerHTML;
             navigator.clipboard.writeText(text);
         }
-    });
+        e.preventDefault();
+    }, false);
 }
 
 /* Bookmarks */
@@ -86,28 +94,41 @@ function getBookmarksTree(callback) {
 }
 function initBookmarks() {
     getBookmarksTree(function(bookmarkTreeNodes) {
-        console.log('bookmarkTreeNodes>>>', bookmarkTreeNodes);
         if (bookmarkTreeNodes) {
             const children = bookmarkTreeNodes[0].children;
-            $('#bookmarks').append(dumpTreeNodes(children[0].children, 'root'));
+            const bookmarks = document.getElementById('bookmarks');
+            bookmarks.appendChild(dumpTreeNodes(children[0].children, 'root'));
         }
     });
 }
 
-/* Footer */
+/* Editor */
+function switchEditorMode() {
+    const editBtn = document.getElementById('edit');
+    const editorPanel = document.getElementById('editor');
+    const markdownTextArea = document.getElementById('markdown');
+    editorPanel.classList.toggle('hidden');
+    if (editorPanel.classList.contains('hidden')) {
+        editBtn.innerHTML = 'Edit <span>Ctrl+X</span>';
+    } else {
+        markdownTextArea.focus();
+        editBtn.innerHTML = 'Save <span>Ctrl+S</span>';
+    }
+}
 function initEditor() {
     const edit = document.getElementById('edit');
-
     edit.addEventListener('click', () => {
-        $('#editor').toggleClass('hidden');
+        switchEditorMode();
     });
 }
 
 function dumpTreeNodes(bookmarkNodes, stage) {
-    const list = $('<ul class="list list-'+stage+'">');
+    const list = document.createElement('ul');
+    list.classList.add('list');
+    list.classList.add('list-'+stage);
     let i;
     for (i = 0; i < bookmarkNodes.length; i++) {
-        list.append(dumpNode(bookmarkNodes[i], stage));
+        list.appendChild(dumpNode(bookmarkNodes[i], stage));
     }
     return list;
 }
@@ -120,15 +141,17 @@ function dumpNode(bookmarkNode, stage) {
             bookmarkNode.title = url.hostname + (url.port ? ':'+url.port : '');
         }
     }
-    let item = $('<span>').html(bookmarkNode.title);
+    const title = document.createTextNode(truncate(bookmarkNode.title, 20));
+    let item = document.createElement('span');
+    item.appendChild(title);
     if (bookmarkNode.url) {
-        item = $('<a>');
-        item.attr('href', bookmarkNode.url);
-        item.text(bookmarkNode.title);
+        item = document.createElement('a');
+        item.setAttribute('href', bookmarkNode.url);
+        item.appendChild(title);
         const url = new URL(bookmarkNode.url);
         if (['chrome:', 'chrome-extension:'].includes(url.protocol)) {
             if (chrome.tabs) {
-                item.click(function(e) {
+                item.addEventListener('click', function(e) {
                     chrome.tabs.create({
                         url: bookmarkNode.url,
                     });
@@ -137,9 +160,13 @@ function dumpNode(bookmarkNode, stage) {
             }
         }
     }
-    const li = $('<li class="item item-'+stage+'">').append(item);
+    item.setAttribute('title', bookmarkNode.title);
+    const li = document.createElement('li');
+    li.classList.add('item');
+    li.classList.add('item-' + stage);
+    li.appendChild(item);
     if (bookmarkNode.children && bookmarkNode.children.length > 0) {
-        li.append(dumpTreeNodes(bookmarkNode.children, 'children'));
+        li.appendChild(dumpTreeNodes(bookmarkNode.children, 'children'));
     }
     return li;
 }

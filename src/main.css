@@ -10,6 +10,45 @@ body {
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    z-index: 10;
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-button {
+    z-index: 10;
+    width: 0px;
+    height: 0px;
+}
+::-webkit-scrollbar-track {
+    z-index: 10;
+    background: #666666;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-corner {
+    z-index: 10;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    z-index: 10;
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #000000;
+}
+::-webkit-scrollbar-track:hover {
+    background: #666666;
+}
+::-webkit-scrollbar-track:active {
+    background: #333333;
+}
+
 div {
     margin: 0;
     padding: 0;
@@ -114,7 +153,10 @@ a:hover {
     padding: 4px;
     box-shadow: rgb(61, 61, 61) 0 0 0 1px ;
     min-width: 150px;
-    z-index: 10;
+    z-index: 11;
+    overflow-x: hidden;
+    overflow-y: visible;
+    max-height: 87vh;
 }
 #bookmarks > ul > li > ul {
     top: 100%;
@@ -122,6 +164,7 @@ a:hover {
 #bookmarks > ul > li ul li {
     margin-left: -4px;
     margin-right: -4px;
+    width: 250px;
 }
 
 /* ICON ITEMS STYLING */
@@ -158,8 +201,9 @@ a:hover {
     position: relative;
 }
 #bookmarks > ul > li > ul ul {
-    top: 0;
-    left: calc(100% + 1px);
+    top: 27px;
+    left: calc(39% + -4px);
+    position: fixed;
 }
 
 #bookmarks li:hover > span,
